@@ -17,10 +17,9 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-background:
-linear-gradient(135deg,#020617,#0f172a,#1e293b);
+background:url('background.png') center center/cover no-repeat fixed;
 min-height:100vh;
-color:rgb(255, 255, 255);
+color:white;
 padding:30px;
 }
 
@@ -196,11 +195,14 @@ color:#22c55e;
     margin-top:6px;
 
     max-height:0;
-    overflow:hidden;
+
+    overflow-y:auto;
+    overflow-x:hidden;
 
     opacity:0;
 
-    transition:all .3s ease;
+    transition:max-height .3s ease,
+               opacity .3s ease;
 
     z-index:999;
 }
@@ -217,7 +219,7 @@ color:#22c55e;
 }
 
 .custom-select.active .options{
-    max-height:400px;
+    max-height:500px;
     opacity:1;
 }
 
@@ -232,6 +234,19 @@ color:#22c55e;
 
 .custom-select.active .selected span{
     transform:rotate(180deg);
+}
+
+.options::-webkit-scrollbar{
+    width:6px;
+}
+
+.options::-webkit-scrollbar-track{
+    background:#0f172a;
+}
+
+.options::-webkit-scrollbar-thumb{
+    background:#22c55e;
+    border-radius:20px;
 }
 
 @media(max-width:768px){
@@ -483,4 +498,4 @@ document.addEventListener("click", () => {
 </script>
 
 </body>
-</html>
+</html>>
