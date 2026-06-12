@@ -25,8 +25,9 @@ padding:30px;
 }
 
 .container{
-max-width:1100px;
-margin:auto;
+    width:100%;
+    max-width:750px;
+    margin:0 auto;
 }
 
 h1{
@@ -38,13 +39,13 @@ letter-spacing:1px;
 }
 
 .card{
-background:rgba(255,255,255,0.05);
+background:rgba(112, 112, 112, 0);
 backdrop-filter:blur(15px);
 -webkit-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.1);
-padding:25px;
-border-radius:20px;
-margin-bottom:25px;
+border:1px solid rgba(255, 255, 255, 0.137);
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
 box-shadow:
 0 10px 30px rgba(0,0,0,0.4);
 transition:.3s;
@@ -68,9 +69,9 @@ textarea{
 width:100%;
 padding:14px;
 border-radius:12px;
-border:1px solid rgba(255,255,255,0.1);
+border:1px solid rgba(255, 249, 249, 0.1);
 background:rgba(255,255,255,0.08);
-color:rgb(165, 165, 165);
+color:rgb(121, 121, 121);
 font-size:15px;
 outline:none;
 transition:.3s;
@@ -160,6 +161,79 @@ margin-bottom:15px;
 color:#22c55e;
 }
 
+.custom-select{
+    position:relative;
+    width:100%;
+}
+
+.selected{
+    background:#111827;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.15);
+    cursor:pointer;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.selected:hover{
+    border-color:#22c55e;
+}
+
+.options{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+
+    background:#0f172a;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:12px;
+
+    margin-top:6px;
+
+    max-height:0;
+    overflow:hidden;
+
+    opacity:0;
+
+    transition:all .3s ease;
+
+    z-index:999;
+}
+
+.option{
+    padding:12px 14px;
+    cursor:pointer;
+    color:white;
+}
+
+.option:hover{
+    background:#22c55e;
+    color:black;
+}
+
+.custom-select.active .options{
+    max-height:400px;
+    opacity:1;
+}
+
+.custom-select.active .selected{
+    border-color:#22c55e;
+    box-shadow:0 0 15px rgba(34,197,94,.4);
+}
+
+.selected span{
+    transition:.3s;
+}
+
+.custom-select.active .selected span{
+    transform:rotate(180deg);
+}
+
 @media(max-width:768px){
 
 body{
@@ -190,41 +264,89 @@ font-size:24px;
 Studio Room Prompt Generator • Keperluan Masking
 </div>
 
-<label>Tema Room</label> <select id="theme">
+<div class="container">
 
-<option>Rumah Bugis </option>
-<option>Villa Pegunungan</option>
-<option>VIP Racing Lounge</option>
-<option>Gaming Cyber Cafe</option>
-<option>Rumah Bali</option>
-<option>Rumah Jawa</option>
-<option>Pandopo bali</option>
-<option>Pendopo jawa</option>
-<option>Rumah bambu </option>
-<option>Rumah Adat Tongkonan</option>
-</select>
+<div class="card">
 
-<label>Style</label> <select id="style">
+<label>Tema Room</label>
 
-<option>Ultra Realistic</option>
-<option>Cinematic</option>
-<option>Photorealistic</option>
-<option>Luxury</option>
-</select>
+<div class="custom-select" id="themeDropdown">
 
-<label>Resolusi</label> <select id="resolution">
+    <div class="selected">
+        Rumah Bugis
+        <span>▼</span>
+    </div>
 
-<option>16K</option>
-<option>8K</option>
-<option>4K</option>
-</select>
+    <div class="options">
 
-<label>Aspect Ratio</label> <select id="ratio">
+        <div class="option">Rumah Bugis</div>
+        <div class="option">Villa Pegunungan</div>
+        <div class="option">VIP Racing Lounge</div>
+        <div class="option">Gaming Cyber Cafe</div>
+        <div class="option">Rumah Bali</div>
+        <div class="option">Rumah Jawa</div>
+        <div class="option">Pandopo bali</div>
+        <div class="option">Pendopo jawa</div>
+        <div class="option">Rumah bambu</div>
+        <div class="option">Rumah Adat Tongkonan</div>
 
-<option>9:16</option>
-<option>16:9</option>
-<option>1:1</option>
-</select>
+    </div>
+
+</div>
+
+<input type="hidden" id="theme" value="Rumah Bugis">
+
+<label>Style</label>
+
+<div class="custom-select">
+    <div class="selected">
+        Ultra Realistic
+        <span>▼</span>
+    </div>
+
+    <div class="options">
+        <div class="option">Ultra Realistic</div>
+        <div class="option">Cinematic</div>
+        <div class="option">Photorealistic</div>
+        <div class="option">Luxury</div>
+    </div>
+</div>
+
+<input type="hidden" id="style" value="Ultra Realistic">
+
+<label>Resolusi</label>
+
+<div class="custom-select">
+    <div class="selected">
+        16K
+        <span>▼</span>
+    </div>
+
+    <div class="options">
+        <div class="option">16K</div>
+        <div class="option">8K</div>
+        <div class="option">4K</div>
+    </div>
+</div>
+
+<input type="hidden" id="resolution" value="16K">
+
+<label>Aspect Ratio</label>
+
+<div class="custom-select">
+    <div class="selected">
+        9:16
+        <span>▼</span>
+    </div>
+
+    <div class="options">
+        <div class="option">9:16</div>
+        <div class="option">16:9</div>
+        <div class="option">1:1</div>
+    </div>
+</div>
+
+<input type="hidden" id="ratio" value="9:16">
 
 <label>Tambahan Detail</label> <input id="detail" placeholder="monitor banyak, lampu LED, kebun teh, dll">
 
@@ -297,6 +419,66 @@ navigator.clipboard.writeText(text.value);
 
 alert("Prompt berhasil dicopy!");
 }
+
+document.querySelectorAll(".custom-select").forEach(dropdown => {
+
+    const selected =
+        dropdown.querySelector(".selected");
+
+    const options =
+        dropdown.querySelectorAll(".option");
+
+    const hiddenInput =
+        dropdown.nextElementSibling;
+
+    selected.addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+        document
+            .querySelectorAll(".custom-select")
+            .forEach(d => {
+
+                if(d !== dropdown){
+                    d.classList.remove("active");
+                }
+
+            });
+
+        dropdown.classList.toggle("active");
+
+    });
+
+    options.forEach(option => {
+
+        option.addEventListener("click", () => {
+
+            selected.innerHTML =
+                option.innerText +
+                '<span>▼</span>';
+
+            hiddenInput.value =
+                option.innerText;
+
+            dropdown.classList.remove("active");
+
+        });
+
+    });
+
+});
+
+document.addEventListener("click", () => {
+
+    document
+        .querySelectorAll(".custom-select")
+        .forEach(dropdown => {
+
+            dropdown.classList.remove("active");
+
+        });
+
+});
 
 </script>
 
