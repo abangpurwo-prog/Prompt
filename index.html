@@ -264,6 +264,30 @@ h1{
 font-size:24px;
 }
 }
+
+#welcome{
+    text-align:center;
+    margin-bottom:20px;
+    color:#ffffff;
+    font-weight:600;
+    font-size:18px;
+}
+
+.logout{
+    background:linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+    color:white;
+    width:100%;
+}
+
+.logout:hover{
+    transform:translateY(-2px);
+    box-shadow:
+    0 8px 25px rgba(239,68,68,.5);
+}
 </style>
 
 </head>
@@ -280,6 +304,7 @@ Studio Room Prompt Generator</div>
 <div class="subtitle">
 Keperluan Masking
 </div>
+<div id="welcome"></div>
 <div class="container">
 
 <div class="card">
@@ -383,11 +408,28 @@ Generate Prompt
 Copy Prompt
 </button>
 
+<button class="logout" onclick="logout()">
+Logout
+</button>
+
 </div>
 
 </div>
 
 <script>
+
+if(localStorage.getItem("isLogin") !== "true"){
+window.location.href="login.html";
+}
+
+function logout(){
+
+localStorage.removeItem("isLogin");
+localStorage.removeItem("username");
+
+window.location.href="login.html";
+
+}
 
 function generatePrompt(){
 
@@ -496,6 +538,9 @@ document.addEventListener("click", () => {
         });
 
 });
+document.getElementById("welcome").innerHTML =
+"Selamat datang, " +
+localStorage.getItem("username");
 
 </script>
 
